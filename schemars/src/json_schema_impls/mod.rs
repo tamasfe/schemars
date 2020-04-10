@@ -31,8 +31,9 @@ macro_rules! forward_impl {
                 name: String,
                 metadata: Option<crate::schema::Metadata>,
                 required: bool,
+                schema_with: Option<fn(&mut gen::SchemaGenerator) -> Schema>,
             ) {
-                <$target>::add_schema_as_property(gen, parent, name, metadata, required)
+                <$target>::add_schema_as_property(gen, parent, name, metadata, required, schema_with)
             }
         }
     };

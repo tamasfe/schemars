@@ -298,8 +298,11 @@ pub trait JsonSchema {
         name: String,
         metadata: Option<schema::Metadata>,
         required: bool,
+        schema_with: Option<fn(&mut gen::SchemaGenerator) -> Schema>,
     ) {
-        let mut schema = gen.subschema_for::<Self>();
+        let mut schema = schema_with
+            .map(|s| s(gen))
+            .unwrap_or_else(|| gen.subschema_for::<Self>());
 
         if let Some(metadata) = metadata {
             schema = gen.apply_metadata(schema, metadata);

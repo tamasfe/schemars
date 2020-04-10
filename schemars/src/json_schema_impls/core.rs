@@ -62,9 +62,12 @@ impl<T: JsonSchema> JsonSchema for Option<T> {
         parent: &mut SchemaObject,
         name: String,
         metadata: Option<Metadata>,
-        _required: bool,
+        required: bool,
+        schema_with: Option<fn(&mut SchemaGenerator) -> Schema>,
     ) {
-        let mut schema = gen.subschema_for::<Self>();
+        let mut schema = schema_with
+            .map(|s| s(gen))
+            .unwrap_or_else(|| gen.subschema_for::<Self>());
 
         if let Some(metadata) = metadata {
             schema = gen.apply_metadata(schema, metadata);

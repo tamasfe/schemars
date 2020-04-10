@@ -324,7 +324,7 @@ fn schema_for_struct(fields: &[Field], cattrs: Option<&serde_attr::Container>) -
         let span = field.original.span();
 
         quote_spanned! {span=>
-            <#ty>::add_schema_as_property(gen, &mut schema_object, #name.to_owned(), #metadata, #required);
+            <#ty>::add_schema_as_property(gen, &mut schema_object, #name.to_owned(), #metadata, #required, None);
         }
     });
 
