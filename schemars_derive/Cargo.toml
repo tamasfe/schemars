@@ -1,14 +1,10 @@
 [package]
-name = "schemars_derive"
-description = "Macros for #[derive(JsonSchema)], for use with schemars"
-homepage = "https://graham.cool/schemars/"
-repository = "https://github.com/GREsau/schemars"
+name = "tamasfe-schemars_derive"
+description = "A fork of schemars, do not use this!"
 version = "0.8.0"
-authors = ["Graham Esau <gesau@hotmail.co.uk>"]
+authors = ["tamasfe"]
 edition = "2018"
 license = "MIT"
-readme = "README.md"
-keywords = ["rust", "json-schema", "serde"]
 
 [lib]
 proc-macro = true
